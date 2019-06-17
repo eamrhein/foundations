@@ -1,9 +1,9 @@
 # Write a method, swapper(arr, idx_1, idx_2), that accepts an array and two indices as args.
 # The method should swap the elements at the given indices and return the array.
 # The method should modify the existing array and not create a new array.
-def swapper(arr, idx_1, idx_2)
-    arr[idx_1] = arr[idx_2]
-    return arr
+def swapper(arr, idx1, idx2)
+  arr[idx1] = arr[idx2]
+  arr
 end
 
 p swapper(["a", "b", "c", "d"], 0, 2)               # => ["c", "b", "a", "d"]
