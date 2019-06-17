@@ -1,0 +1,424 @@
+
+NOTE: Once you complete all specs, run `ruby lib/play_mastermind.rb` in your terminal!
+
+Code
+  ::POSSIBLE_PEGS
+    should be a hash containing letters containing letters as keys and colors as values
+  PART 1
+    ::valid_pegs?
+      should accept an array of chars as an arg (FAILED - 1)
+      when all chars of the array are in ::POSSIBLE_PEGS
+        should return true (FAILED - 2)
+      when a char of the array is not in ::POSSIBLE_PEGS
+        should return false (FAILED - 3)
+    #initialize
+      should accept an array of chars representing pegs as an arg (FAILED - 4)
+      should call Code::valid_pegs? (FAILED - 5)
+      when the array does not contain valid pegs
+        should raise an error
+      when the array contains valid_pegs
+        should set @pegs to an array of chars from the arg (FAILED - 6)
+        should convert lowercase chars of the arg to uppercase in @pegs (FAILED - 7)
+    #pegs
+      should get (return) @pegs (FAILED - 8)
+    ::random
+      should accept a length (number) as an arg (FAILED - 9)
+      should call Code::new with an array of the given length containing random pegs (FAILED - 10)
+      should return a Code instance with a randomized pegs array of the given length (FAILED - 11)
+    ::from_string
+      should accept a string representing pegs as an arg (FAILED - 12)
+      should call Code::new with an array of chars (FAILED - 13)
+      should return a Code instance with pegs colors given by the chars of the string (FAILED - 14)
+    #[]
+      should accept an index as an arg (FAILED - 15)
+      should return the element of @pegs at the given index (FAILED - 16)
+    #length
+      should return the length of @pegs (FAILED - 17)
+  PART 2
+    #num_exact_matches
+      should accept a Code instance representing a guess (FAILED - 18)
+      should return the number of pegs in the guess that are the correct color and position as @pegs (FAILED - 19)
+    #num_near_matches
+      should accept a Code instance representing a guess (FAILED - 20)
+      should return the number of pegs in the guess that are the correct color but incorrect position compared to @pegs (FAILED - 21)
+      should not include exact matches (FAILED - 22)
+    #==
+      should accept another Code instance as an arg (FAILED - 23)
+      should return a boolean indicating whether the arg exactly matches self (FAILED - 24)
+      should return false if the arg has different length from self (FAILED - 25)
+
+Mastermind
+  PART 3
+    #initialize
+      should accept a length (number) as an arg (FAILED - 26)
+      should set @secret_code to a random Code instance of the given length (FAILED - 27)
+    #print_matches
+      should accept a Code instance as an arg (FAILED - 28)
+      should print the number of exact matches between @secret_code and the arg (FAILED - 29)
+      should print the number of near matches between @secret_code and the arg (FAILED - 30)
+    #ask_user_for_guess
+      should print 'Enter a code' (FAILED - 31)
+      should call gets.chomp to get input from the user (FAILED - 32)
+      should call Code::from_string with the user's entered string (FAILED - 33)
+      should print the number of exact and near matches between @secret_code and the user's guessed code (FAILED - 34)
+      should return a boolean indicating whether the user's guessed code is equal to @secret_code (FAILED - 35)
+
+Failures:
+
+  1) Code PART 1 ::valid_pegs? should accept an array of chars as an arg
+     Failure/Error: Code.valid_pegs?(["B", "Y", "G", "G"])
+
+     NoMethodError:
+       undefined method `valid_pegs?' for Code:Class
+     # ./spec/code_spec.rb:17:in `block (4 levels) in <top (required)>'
+
+  2) Code PART 1 ::valid_pegs? when all chars of the array are in ::POSSIBLE_PEGS should return true
+     Failure/Error: expect(Code.valid_pegs?(["B", "Y", "G", "G"])).to eq(true)
+
+     NoMethodError:
+       undefined method `valid_pegs?' for Code:Class
+     # ./spec/code_spec.rb:22:in `block (5 levels) in <top (required)>'
+
+  3) Code PART 1 ::valid_pegs? when a char of the array is not in ::POSSIBLE_PEGS should return false
+     Failure/Error: expect(Code.valid_pegs?(["B", "Y", "Z", "G"])).to eq(false)
+
+     NoMethodError:
+       undefined method `valid_pegs?' for Code:Class
+     # ./spec/code_spec.rb:29:in `block (5 levels) in <top (required)>'
+
+  4) Code PART 1 #initialize should accept an array of chars representing pegs as an arg
+     Failure/Error: let (:code) { Code.new(["R", "G", "R", "B"]) }
+
+     ArgumentError:
+       wrong number of arguments (given 1, expected 0)
+     # ./spec/code_spec.rb:6:in `initialize'
+     # ./spec/code_spec.rb:6:in `new'
+     # ./spec/code_spec.rb:6:in `block (2 levels) in <top (required)>'
+     # ./spec/code_spec.rb:36:in `block (4 levels) in <top (required)>'
+
+  5) Code PART 1 #initialize should call Code::valid_pegs?
+     Failure/Error: let (:code) { Code.new(["R", "G", "R", "B"]) }
+
+     ArgumentError:
+       wrong number of arguments (given 1, expected 0)
+     # ./spec/code_spec.rb:6:in `initialize'
+     # ./spec/code_spec.rb:6:in `new'
+     # ./spec/code_spec.rb:6:in `block (2 levels) in <top (required)>'
+     # ./spec/code_spec.rb:42:in `block (4 levels) in <top (required)>'
+
+  6) Code PART 1 #initialize when the array contains valid_pegs should set @pegs to an array of chars from the arg
+     Failure/Error: let (:code) { Code.new(["R", "G", "R", "B"]) }
+
+     ArgumentError:
+       wrong number of arguments (given 1, expected 0)
+     # ./spec/code_spec.rb:6:in `initialize'
+     # ./spec/code_spec.rb:6:in `new'
+     # ./spec/code_spec.rb:6:in `block (2 levels) in <top (required)>'
+     # ./spec/code_spec.rb:53:in `block (5 levels) in <top (required)>'
+
+  7) Code PART 1 #initialize when the array contains valid_pegs should convert lowercase chars of the arg to uppercase in @pegs
+     Failure/Error: code = Code.new(["r", "g", "r", "b"])
+
+     ArgumentError:
+       wrong number of arguments (given 1, expected 0)
+     # ./spec/code_spec.rb:57:in `initialize'
+     # ./spec/code_spec.rb:57:in `new'
+     # ./spec/code_spec.rb:57:in `block (5 levels) in <top (required)>'
+
+  8) Code PART 1 #pegs should get (return) @pegs
+     Failure/Error: let (:code) { Code.new(["R", "G", "R", "B"]) }
+
+     ArgumentError:
+       wrong number of arguments (given 1, expected 0)
+     # ./spec/code_spec.rb:6:in `initialize'
+     # ./spec/code_spec.rb:6:in `new'
+     # ./spec/code_spec.rb:6:in `block (2 levels) in <top (required)>'
+     # ./spec/code_spec.rb:65:in `block (4 levels) in <top (required)>'
+
+  9) Code PART 1 ::random should accept a length (number) as an arg
+     Failure/Error: Code.random(5)
+
+     NoMethodError:
+       undefined method `random' for Code:Class
+     # ./spec/code_spec.rb:71:in `block (4 levels) in <top (required)>'
+
+  10) Code PART 1 ::random should call Code::new with an array of the given length containing random pegs
+      Failure/Error: Code.random(5)
+
+      NoMethodError:
+        undefined method `random' for Code:Class
+      # ./spec/code_spec.rb:76:in `block (4 levels) in <top (required)>'
+
+  11) Code PART 1 ::random should return a Code instance with a randomized pegs array of the given length
+      Failure/Error: random_code = Code.random(5)
+
+      NoMethodError:
+        undefined method `random' for Code:Class
+      # ./spec/code_spec.rb:80:in `block (4 levels) in <top (required)>'
+
+  12) Code PART 1 ::from_string should accept a string representing pegs as an arg
+      Failure/Error: Code.from_string("GBGB")
+
+      NoMethodError:
+        undefined method `from_string' for Code:Class
+      # ./spec/code_spec.rb:88:in `block (4 levels) in <top (required)>'
+
+  13) Code PART 1 ::from_string should call Code::new with an array of chars
+      Failure/Error: Code.from_string("GBGB")
+
+      NoMethodError:
+        undefined method `from_string' for Code:Class
+      # ./spec/code_spec.rb:93:in `block (4 levels) in <top (required)>'
+
+  14) Code PART 1 ::from_string should return a Code instance with pegs colors given by the chars of the string
+      Failure/Error: code_from_string = Code.from_string("GBGB")
+
+      NoMethodError:
+        undefined method `from_string' for Code:Class
+      # ./spec/code_spec.rb:97:in `block (4 levels) in <top (required)>'
+
+  15) Code PART 1 #[] should accept an index as an arg
+      Failure/Error: let (:code) { Code.new(["R", "G", "R", "B"]) }
+
+      ArgumentError:
+        wrong number of arguments (given 1, expected 0)
+      # ./spec/code_spec.rb:6:in `initialize'
+      # ./spec/code_spec.rb:6:in `new'
+      # ./spec/code_spec.rb:6:in `block (2 levels) in <top (required)>'
+      # ./spec/code_spec.rb:105:in `block (4 levels) in <top (required)>'
+
+  16) Code PART 1 #[] should return the element of @pegs at the given index
+      Failure/Error: let (:code) { Code.new(["R", "G", "R", "B"]) }
+
+      ArgumentError:
+        wrong number of arguments (given 1, expected 0)
+      # ./spec/code_spec.rb:6:in `initialize'
+      # ./spec/code_spec.rb:6:in `new'
+      # ./spec/code_spec.rb:6:in `block (2 levels) in <top (required)>'
+      # ./spec/code_spec.rb:109:in `block (4 levels) in <top (required)>'
+
+  17) Code PART 1 #length should return the length of @pegs
+      Failure/Error: let (:code) { Code.new(["R", "G", "R", "B"]) }
+
+      ArgumentError:
+        wrong number of arguments (given 1, expected 0)
+      # ./spec/code_spec.rb:6:in `initialize'
+      # ./spec/code_spec.rb:6:in `new'
+      # ./spec/code_spec.rb:6:in `block (2 levels) in <top (required)>'
+      # ./spec/code_spec.rb:116:in `block (4 levels) in <top (required)>'
+
+  18) Code PART 2 #num_exact_matches should accept a Code instance representing a guess
+      Failure/Error: let (:code) { Code.new(["R", "G", "R", "B"]) }
+
+      ArgumentError:
+        wrong number of arguments (given 1, expected 0)
+      # ./spec/code_spec.rb:6:in `initialize'
+      # ./spec/code_spec.rb:6:in `new'
+      # ./spec/code_spec.rb:6:in `block (2 levels) in <top (required)>'
+      # ./spec/code_spec.rb:124:in `block (4 levels) in <top (required)>'
+
+  19) Code PART 2 #num_exact_matches should return the number of pegs in the guess that are the correct color and position as @pegs
+      Failure/Error: let (:code) { Code.new(["R", "G", "R", "B"]) }
+
+      ArgumentError:
+        wrong number of arguments (given 1, expected 0)
+      # ./spec/code_spec.rb:6:in `initialize'
+      # ./spec/code_spec.rb:6:in `new'
+      # ./spec/code_spec.rb:6:in `block (2 levels) in <top (required)>'
+      # ./spec/code_spec.rb:128:in `block (4 levels) in <top (required)>'
+
+  20) Code PART 2 #num_near_matches should accept a Code instance representing a guess
+      Failure/Error: let (:code) { Code.new(["R", "G", "R", "B"]) }
+
+      ArgumentError:
+        wrong number of arguments (given 1, expected 0)
+      # ./spec/code_spec.rb:6:in `initialize'
+      # ./spec/code_spec.rb:6:in `new'
+      # ./spec/code_spec.rb:6:in `block (2 levels) in <top (required)>'
+      # ./spec/code_spec.rb:136:in `block (4 levels) in <top (required)>'
+
+  21) Code PART 2 #num_near_matches should return the number of pegs in the guess that are the correct color but incorrect position compared to @pegs
+      Failure/Error: let (:code) { Code.new(["R", "G", "R", "B"]) }
+
+      ArgumentError:
+        wrong number of arguments (given 1, expected 0)
+      # ./spec/code_spec.rb:6:in `initialize'
+      # ./spec/code_spec.rb:6:in `new'
+      # ./spec/code_spec.rb:6:in `block (2 levels) in <top (required)>'
+      # ./spec/code_spec.rb:140:in `block (4 levels) in <top (required)>'
+
+  22) Code PART 2 #num_near_matches should not include exact matches
+      Failure/Error: let (:code) { Code.new(["R", "G", "R", "B"]) }
+
+      ArgumentError:
+        wrong number of arguments (given 1, expected 0)
+      # ./spec/code_spec.rb:6:in `initialize'
+      # ./spec/code_spec.rb:6:in `new'
+      # ./spec/code_spec.rb:6:in `block (2 levels) in <top (required)>'
+      # ./spec/code_spec.rb:144:in `block (4 levels) in <top (required)>'
+
+  23) Code PART 2 #== should accept another Code instance as an arg
+      Failure/Error: other_code = Code.new(["R", "G", "R", "B"])
+
+      ArgumentError:
+        wrong number of arguments (given 1, expected 0)
+      # ./spec/code_spec.rb:150:in `initialize'
+      # ./spec/code_spec.rb:150:in `new'
+      # ./spec/code_spec.rb:150:in `block (4 levels) in <top (required)>'
+
+  24) Code PART 2 #== should return a boolean indicating whether the arg exactly matches self
+      Failure/Error: same_code = Code.new(["R", "G", "R", "B"])
+
+      ArgumentError:
+        wrong number of arguments (given 1, expected 0)
+      # ./spec/code_spec.rb:155:in `initialize'
+      # ./spec/code_spec.rb:155:in `new'
+      # ./spec/code_spec.rb:155:in `block (4 levels) in <top (required)>'
+
+  25) Code PART 2 #== should return false if the arg has different length from self
+      Failure/Error: other_code = Code.new(["R", "G", "R", "B", "B"])
+
+      ArgumentError:
+        wrong number of arguments (given 1, expected 0)
+      # ./spec/code_spec.rb:163:in `initialize'
+      # ./spec/code_spec.rb:163:in `new'
+      # ./spec/code_spec.rb:163:in `block (4 levels) in <top (required)>'
+
+  26) Mastermind PART 3 #initialize should accept a length (number) as an arg
+      Failure/Error: mastermind = Mastermind.new(4)
+
+      ArgumentError:
+        wrong number of arguments (given 1, expected 0)
+      # ./spec/mastermind_spec.rb:21:in `initialize'
+      # ./spec/mastermind_spec.rb:21:in `new'
+      # ./spec/mastermind_spec.rb:21:in `block (2 levels) in <top (required)>'
+      # ./spec/mastermind_spec.rb:29:in `block (4 levels) in <top (required)>'
+
+  27) Mastermind PART 3 #initialize should set @secret_code to a random Code instance of the given length
+      Failure/Error: allow(Code).to receive(:random).and_return(Code.new(["R", "G", "R", "B"]))
+
+      ArgumentError:
+        wrong number of arguments (given 1, expected 0)
+      # ./spec/mastermind_spec.rb:33:in `initialize'
+      # ./spec/mastermind_spec.rb:33:in `new'
+      # ./spec/mastermind_spec.rb:33:in `block (4 levels) in <top (required)>'
+
+  28) Mastermind PART 3 #print_matches should accept a Code instance as an arg
+      Failure/Error: mastermind = Mastermind.new(4)
+
+      ArgumentError:
+        wrong number of arguments (given 1, expected 0)
+      # ./spec/mastermind_spec.rb:21:in `initialize'
+      # ./spec/mastermind_spec.rb:21:in `new'
+      # ./spec/mastermind_spec.rb:21:in `block (2 levels) in <top (required)>'
+      # ./spec/mastermind_spec.rb:45:in `block (4 levels) in <top (required)>'
+
+  29) Mastermind PART 3 #print_matches should print the number of exact matches between @secret_code and the arg
+      Failure/Error: code = Code.new(["R", "Y", "Y", "B"])
+
+      ArgumentError:
+        wrong number of arguments (given 1, expected 0)
+      # ./spec/mastermind_spec.rb:49:in `initialize'
+      # ./spec/mastermind_spec.rb:49:in `new'
+      # ./spec/mastermind_spec.rb:49:in `block (4 levels) in <top (required)>'
+
+  30) Mastermind PART 3 #print_matches should print the number of near matches between @secret_code and the arg
+      Failure/Error: code = Code.new(["Y", "Y", "Y", "G"])
+
+      ArgumentError:
+        wrong number of arguments (given 1, expected 0)
+      # ./spec/mastermind_spec.rb:54:in `initialize'
+      # ./spec/mastermind_spec.rb:54:in `new'
+      # ./spec/mastermind_spec.rb:54:in `block (4 levels) in <top (required)>'
+
+  31) Mastermind PART 3 #ask_user_for_guess should print 'Enter a code'
+      Failure/Error: mastermind = Mastermind.new(4)
+
+      ArgumentError:
+        wrong number of arguments (given 1, expected 0)
+      # ./spec/mastermind_spec.rb:21:in `initialize'
+      # ./spec/mastermind_spec.rb:21:in `new'
+      # ./spec/mastermind_spec.rb:21:in `block (2 levels) in <top (required)>'
+      # ./spec/mastermind_spec.rb:61:in `block (4 levels) in <top (required)>'
+
+  32) Mastermind PART 3 #ask_user_for_guess should call gets.chomp to get input from the user 
+      Failure/Error: mastermind = Mastermind.new(4)
+
+      ArgumentError:
+        wrong number of arguments (given 1, expected 0)
+      # ./spec/mastermind_spec.rb:21:in `initialize'
+      # ./spec/mastermind_spec.rb:21:in `new'
+      # ./spec/mastermind_spec.rb:21:in `block (2 levels) in <top (required)>'
+      # ./spec/mastermind_spec.rb:68:in `block (4 levels) in <top (required)>'
+
+  33) Mastermind PART 3 #ask_user_for_guess should call Code::from_string with the user's entered string
+      Failure/Error: mastermind = Mastermind.new(4)
+
+      ArgumentError:
+        wrong number of arguments (given 1, expected 0)
+      # ./spec/mastermind_spec.rb:21:in `initialize'
+      # ./spec/mastermind_spec.rb:21:in `new'
+      # ./spec/mastermind_spec.rb:21:in `block (2 levels) in <top (required)>'
+      # ./spec/mastermind_spec.rb:77:in `block (4 levels) in <top (required)>'
+
+  34) Mastermind PART 3 #ask_user_for_guess should print the number of exact and near matches between @secret_code and the user's guessed code
+      Failure/Error: mastermind = Mastermind.new(4)
+
+      ArgumentError:
+        wrong number of arguments (given 1, expected 0)
+      # ./spec/mastermind_spec.rb:21:in `initialize'
+      # ./spec/mastermind_spec.rb:21:in `new'
+      # ./spec/mastermind_spec.rb:21:in `block (2 levels) in <top (required)>'
+      # ./spec/mastermind_spec.rb:86:in `block (4 levels) in <top (required)>'
+
+  35) Mastermind PART 3 #ask_user_for_guess should return a boolean indicating whether the user's guessed code is equal to @secret_code
+      Failure/Error: mastermind = Mastermind.new(4)
+
+      ArgumentError:
+        wrong number of arguments (given 1, expected 0)
+      # ./spec/mastermind_spec.rb:21:in `initialize'
+      # ./spec/mastermind_spec.rb:21:in `new'
+      # ./spec/mastermind_spec.rb:21:in `block (2 levels) in <top (required)>'
+      # ./spec/mastermind_spec.rb:93:in `block (4 levels) in <top (required)>'
+
+Finished in 0.0106 seconds (files took 0.07616 seconds to load)
+37 examples, 35 failures
+
+Failed examples:
+
+rspec ./spec/code_spec.rb:16 # Code PART 1 ::valid_pegs? should accept an array of chars as an arg
+rspec ./spec/code_spec.rb:21 # Code PART 1 ::valid_pegs? when all chars of the array are in ::POSSIBLE_PEGS should return true
+rspec ./spec/code_spec.rb:28 # Code PART 1 ::valid_pegs? when a char of the array is not in ::POSSIBLE_PEGS should return false
+rspec ./spec/code_spec.rb:35 # Code PART 1 #initialize should accept an array of chars representing pegs as an arg
+rspec ./spec/code_spec.rb:39 # Code PART 1 #initialize should call Code::valid_pegs?
+rspec ./spec/code_spec.rb:52 # Code PART 1 #initialize when the array contains valid_pegs should set @pegs to an array of chars from the arg
+rspec ./spec/code_spec.rb:56 # Code PART 1 #initialize when the array contains valid_pegs should convert lowercase chars of the arg to uppercase in @pegs
+rspec ./spec/code_spec.rb:64 # Code PART 1 #pegs should get (return) @pegs
+rspec ./spec/code_spec.rb:70 # Code PART 1 ::random should accept a length (number) as an arg
+rspec ./spec/code_spec.rb:74 # Code PART 1 ::random should call Code::new with an array of the given length containing random pegs
+rspec ./spec/code_spec.rb:79 # Code PART 1 ::random should return a Code instance with a randomized pegs array of the given length
+rspec ./spec/code_spec.rb:87 # Code PART 1 ::from_string should accept a string representing pegs as an arg
+rspec ./spec/code_spec.rb:91 # Code PART 1 ::from_string should call Code::new with an array of chars
+rspec ./spec/code_spec.rb:96 # Code PART 1 ::from_string should return a Code instance with pegs colors given by the chars of the string
+rspec ./spec/code_spec.rb:104 # Code PART 1 #[] should accept an index as an arg
+rspec ./spec/code_spec.rb:108 # Code PART 1 #[] should return the element of @pegs at the given index
+rspec ./spec/code_spec.rb:115 # Code PART 1 #length should return the length of @pegs
+rspec ./spec/code_spec.rb:123 # Code PART 2 #num_exact_matches should accept a Code instance representing a guess
+rspec ./spec/code_spec.rb:127 # Code PART 2 #num_exact_matches should return the number of pegs in the guess that are the correct color and position as @pegs
+rspec ./spec/code_spec.rb:135 # Code PART 2 #num_near_matches should accept a Code instance representing a guess
+rspec ./spec/code_spec.rb:139 # Code PART 2 #num_near_matches should return the number of pegs in the guess that are the correct color but incorrect position compared to @pegs
+rspec ./spec/code_spec.rb:143 # Code PART 2 #num_near_matches should not include exact matches
+rspec ./spec/code_spec.rb:149 # Code PART 2 #== should accept another Code instance as an arg
+rspec ./spec/code_spec.rb:154 # Code PART 2 #== should return a boolean indicating whether the arg exactly matches self
+rspec ./spec/code_spec.rb:162 # Code PART 2 #== should return false if the arg has different length from self
+rspec ./spec/mastermind_spec.rb:28 # Mastermind PART 3 #initialize should accept a length (number) as an arg
+rspec ./spec/mastermind_spec.rb:32 # Mastermind PART 3 #initialize should set @secret_code to a random Code instance of the given length
+rspec ./spec/mastermind_spec.rb:44 # Mastermind PART 3 #print_matches should accept a Code instance as an arg
+rspec ./spec/mastermind_spec.rb:48 # Mastermind PART 3 #print_matches should print the number of exact matches between @secret_code and the arg
+rspec ./spec/mastermind_spec.rb:53 # Mastermind PART 3 #print_matches should print the number of near matches between @secret_code and the arg
+rspec ./spec/mastermind_spec.rb:60 # Mastermind PART 3 #ask_user_for_guess should print 'Enter a code'
+rspec ./spec/mastermind_spec.rb:66 # Mastermind PART 3 #ask_user_for_guess should call gets.chomp to get input from the user 
+rspec ./spec/mastermind_spec.rb:75 # Mastermind PART 3 #ask_user_for_guess should call Code::from_string with the user's entered string
+rspec ./spec/mastermind_spec.rb:84 # Mastermind PART 3 #ask_user_for_guess should print the number of exact and near matches between @secret_code and the user's guessed code
+rspec ./spec/mastermind_spec.rb:91 # Mastermind PART 3 #ask_user_for_guess should return a boolean indicating whether the user's guessed code is equal to @secret_code
+
