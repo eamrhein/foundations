@@ -115,15 +115,8 @@ class String
   # "zebra".caesar_cipher(4)    #=> "difve"
 
   def caesar_cipher(num)
-    key = {}
-    alphabet = ('a'..'z').to_a
-    alphabet.each_with_index do |i, el|
-      key[el] = i
+    alphabet = (a..z).to_a
+      end
     end
-    shifted = ''
-    each_char do |ch|
-      shifted += key[(key.key(ch) + num) % 26]
-    end
-    shifted
   end
 end
