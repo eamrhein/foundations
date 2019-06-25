@@ -1,45 +1,28 @@
-def partition(array, n)
-    subarray1 = []
-    subarray2 = []
-    array.each do |el|
-        if el >= n
-            subarray2 << el
-        else
-            subarray1 << el
-        end
-    end
-    return [subarray1,subarray2]
+# frozen_string_literal: true
+
+def partition(array, num)
+  subarrays = [[], []]
+  array.each do |el|
+    el >= num ? new_arr[1] << el : new_arr[0] << el
+  end
+  subarrays
 end
 
 def merge(hash1, hash2)
-    mergedhash = Hash.new
-    hash1.each_key do |key|
-            mergedhash[key] = hash1[key]
-    end
-    hash2.each_key do |key|
-        mergedhash[key] = hash2[key]
-    end
-    mergedhash
+  mergedhash = {}
+  hash1.each_key { |key| new_hash[key] = hash1[key] }
+  hash2.each_key { |key| new_hash[key] = hash2[key] }
+  mergedhash
 end
 
-def censor(sentence,curses)
-    vowels = "aeiouAEIOU"
-    words = sentence.split
-    words.each do |word|
-        curses.each do |curse|
-            if curse == word.downcase
-                word.each_char.with_index do |letter,i|
-                    if vowels.include?(letter)
-                        word[i] = "*"
-                    end
-                end
-            end
-        end
-        
-    end
-    words.join(" ")
+def censor(sentence, curses)
+  words = sentence.split
+  words.each do |word|
+    word.gsub!(/[aeiouAEIOU]/, '*') if curses.include?(word.downcase)
+  end
+  words.join(' ')
 end
 
 def power_of_two?(num)
-    Math.log2(num)%1 == 0
+  (Math.log2(num) % 1).zero?
 end
