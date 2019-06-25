@@ -24,27 +24,14 @@ def vowel_counts(str)
   result
 end
 
-def caesar_cipher(str, num)
-  result = ''
-  str.each_char do |letter|
-    unless letter.ord.between?('a'.ord, 'z'.ord) || letter.ord.between?('A'.ord, 'Z'.ord)
-      result += letter
-      next
+def caesar_cipher(message, num)
+  alpha = ('a'..'z').to_a
+  (0...message.length).each do |i|
+    if alpha.include?(message[i])
+      old_index = alpha.index(message[i])
+      new_index = (old_index + num) % alpha.length
+      message[i] = alpha[new_index]
     end
-    result += caesar_letter(letter, num)
   end
-  result
-end
-
-def caesar_letter(letter, num)
-  if letter == letter.upcase
-    l_code = letter.ord - 'A'.ord
-    s_code = (l_code + num) % 26
-    c_code = (s_code + 'A'.ord)
-  else
-    l_code = letter.ord - 'a'.ord
-    s_code = (l_code + num) % 26
-    c_code = (s_code + 'a'.ord)
-  end
-  c_code.chr
+  message
 end

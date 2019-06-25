@@ -9,15 +9,11 @@ def average_array(array)
 end
 
 def repeat(str, num)
-  result = ''
-  num.times do
-    result += str
-  end
-  result
+  str * num
 end
 
 def yell(str)
-  str.upcase! + '!'
+  str.upcase + '!'
 end
 
 def alternating_case(str)
