@@ -17,7 +17,9 @@ class Array
   def median
     return nil if length.zero?
 
-    sort[length / 2] + sort[(length - 1) / 2] / 2.0
+    middle = length / 2
+    avg = (sort[middle] + sort[middle - 1]) / 2.0
+    length.odd? ? sort[middle] : avg
   end
 
   def counts
@@ -31,12 +33,9 @@ class Array
   end
 
   def my_index(value)
-    if include?(value)
-      each_with_index do |el, i|
-        return i if value == el
-      end
-    end
-    nil
+    return nil if length.zero?
+
+    each_with_index { |el, i| return i if value == el } if include?(value)
   end
 
   def my_uniq
